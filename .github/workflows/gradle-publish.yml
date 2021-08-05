@@ -19,10 +19,11 @@ jobs:
         java-version: 15.0.1
         distribution: 'zulu'
 
-    - name: Build with Gradle
+    - name: Build
       run: gradle build
 
-    - name: gradle release -Prelease.useAutomaticVersion=true
+    - name: Release
+      run: gradle release -Prelease.useAutomaticVersion=true
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
