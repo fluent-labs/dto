@@ -12,6 +12,28 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/fluent-labs/dto")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+            groupId = 'io.fluentlabs'
+            artifactId = 'dto'
+        }
+    }
 }
 
 repositories {
@@ -23,9 +45,6 @@ dependencies {
     // Use Scala 2.13 in our library project
     implementation 'org.scala-lang:scala-library:2.13.5'
 
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.google.guava:guava:30.1-jre'
-
     implementation 'com.typesafe.play:play-json_2.13:2.9.2'
 
     // Use Scalatest for testing our library
@@ -35,7 +54,4 @@ dependencies {
 
     // Need scala-xml at test runtime
     testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.13:1.2.0'
-
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
 }
