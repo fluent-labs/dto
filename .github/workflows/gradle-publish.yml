@@ -22,6 +22,11 @@ jobs:
     - name: Build
       run: gradle build
 
+    - name: Configure git
+      run: |
+        git config --local user.email "release@fluentlabs.io"
+        git config --local user.name "Release"
+
     - name: Release
       run: gradle release -Prelease.useAutomaticVersion=true
 
