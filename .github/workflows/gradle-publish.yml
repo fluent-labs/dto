@@ -1,12 +1,12 @@
-name: Gradle Package
+name: Publish package
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == 'true'
     permissions:
       contents: read
       packages: write
