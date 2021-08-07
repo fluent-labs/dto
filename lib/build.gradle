@@ -43,6 +43,7 @@ publishing {
 release {
     git {
         requireBranch = 'main'
+        failOnCommitNeeded = false
     }
 }
 
