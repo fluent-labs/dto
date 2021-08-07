@@ -24,11 +24,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = if(scalaVersion.startsWith("2.12")) {
-                uri("https://maven.pkg.github.com/fluent-labs/dto_2.12")
-            } else {
-                uri("https://maven.pkg.github.com/fluent-labs/dto_2.13")
-            }
+            url = (scalaVersion.startsWith("2.12")) ? uri("https://maven.pkg.github.com/fluent-labs/dto_2.12") : uri("https://maven.pkg.github.com/fluent-labs/dto_2.13")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
