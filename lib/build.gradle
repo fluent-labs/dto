@@ -8,8 +8,6 @@
 
 plugins {
     id 'scala'
-    // Apply the java-library plugin for API and implementation separation.
-    id 'java-library'
 
     // Release plugins
     id 'maven-publish'
@@ -26,7 +24,11 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/fluent-labs/dto")
+            url = if(scalaVersion.startsWith("2.12")) {
+                uri("https://maven.pkg.github.com/fluent-labs/dto_2.12")
+            } else {
+                uri("https://maven.pkg.github.com/fluent-labs/dto_2.13")
+            }
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
@@ -49,7 +51,6 @@ release {
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
