@@ -41,9 +41,9 @@ publishing {
 }
 
 release {
+    failOnCommitNeeded = false
     git {
         requireBranch = 'main'
-        failOnCommitNeeded = false
     }
 }
 
