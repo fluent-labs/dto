@@ -49,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    // Use Scala 2.12 in our library project
-    implementation 'org.scala-lang:scala-library:2.12.14'
-    implementation 'com.typesafe.play:play-json_2.12:2.9.2'
+    // Use Scala 2.13 in our library project
+    implementation 'org.scala-lang:scala-library:2.13.14'
+    implementation 'com.typesafe.play:play-json_2.13:2.9.2'
 }
