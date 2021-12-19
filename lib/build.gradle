@@ -12,9 +12,6 @@ plugins {
     // Release plugins
     id 'maven-publish'
     id 'net.researchgate.release' version '2.8.1'
-
-    // Dual publish scala versions
-    id "com.adtran.scala-multiversion-plugin" version "2.0.4"
 }
 
 // Needed to run publish before committing the new snapshot version.
@@ -24,7 +21,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = (scalaVersion.startsWith("2.12")) ? uri("https://maven.pkg.github.com/fluent-labs/dto_2.12") : uri("https://maven.pkg.github.com/fluent-labs/dto_2.13")
+            url = uri("https://maven.pkg.github.com/fluent-labs/dto")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
@@ -52,13 +49,12 @@ repositories {
 }
 
 dependencies {
-    // Use Scala 2.12 in our library project
-    implementation 'org.scala-lang:scala-library:%scala-version%'
-
-    implementation 'com.typesafe.play:play-json_%%:2.9.2'
+    // Use Scala 2.13 in our library project
+    implementation 'org.scala-lang:scala-library:2.13.7'
+    implementation 'com.typesafe.play:play-json_2.13:2.9.2'
 
     // Use Scalatest for testing our library
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.scalatest:scalatest_%%:3.2.6'
-    testImplementation 'org.scalatestplus:junit-4-13_%%:3.2.2.0'
+    testImplementation 'org.scalatest:scalatest_2.13:3.2.6'
+    testImplementation 'org.scalatestplus:junit-4-13_2.13:3.2.2.0'
 }
