@@ -51,7 +51,7 @@ repositories {
 dependencies {
     // Use Scala 2.13 in our library project
     implementation 'org.scala-lang:scala-library:2.13.8'
-    implementation 'com.typesafe.play:play-json_2.13:2.9.2'
+    implementation 'com.typesafe.play:play-json_2.13:2.9.3'
 
     // Use Scalatest for testing our library
     testImplementation 'junit:junit:4.13.2'
